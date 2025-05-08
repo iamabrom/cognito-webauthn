@@ -1,0 +1,34 @@
+{
+  "name": "@iamabrom/cognito-webauthn",
+  "author": {
+    "name": "Abrom Douglas III",
+    "email": "git@abrom.dev",
+    "url": "https://authhq.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamabrom/cognito-webauthn.git"
+  },
+  "keywords": [
+    "aws",
+    "cognito",
+    "passkey",
+    "webauthn",
+    "authentication"
+  ],
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.500.0",
+    "@github/webauthn-json": "^2.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
