@@ -1,5 +1,7 @@
 {
   "name": "@iamabrom/cognito-webauthn",
+  "version": "0.1.13",
+  "description": "A TypeScript SDK for Amazon Cognito Passkey (WebAuthn) authentication and registration",
   "author": {
     "name": "Abrom Douglas III",
     "email": "git@abrom.dev",
@@ -10,25 +12,45 @@
     "type": "git",
     "url": "https://github.com/iamabrom/cognito-webauthn.git"
   },
+  "homepage": "https://github.com/iamabrom/cognito-webauthn#readme",
+  "bugs": {
+    "url": "https://github.com/iamabrom/cognito-webauthn/issues"
+  },
   "keywords": [
     "aws",
     "cognito",
     "passkey",
     "webauthn",
-    "authentication"
+    "authentication",
+    "typescript",
+    "sdk"
   ],
-  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.500.0",
-    "@github/webauthn-json": "^2.1.1"
+    "@simplewebauthn/browser": "^13.1.0",
+    "@simplewebauthn/server": "^13.1.1",
+    "@simplewebauthn/types": "^12.0.0"
   },
   "devDependencies": {
     "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.500.0"
   }
 }

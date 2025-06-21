@@ -32,7 +32,15 @@ export class CognitoPasskeyAuth {
   }
 
   async signIn(username: string): Promise<AuthTokens | undefined> {
-    const authParams: Record<string, string> = { USERNAME: username };
+    // Check if WebAuthn is supported
+    if (!window.PublicKeyCredential) {
+      throw new Error("WebAuthn is not supported in this browser");
+    }
+
+    const authParams: Record<string, string> = { 
+      USERNAME: username,
+      PREFERRED_CHALLENGE: "WEB_AUTHN"
+    };
 
     if (this.clientSecret) {
       authParams.SECRET_HASH = await generateSecretHash(username, this.clientId, this.clientSecret);
@@ -72,6 +80,10 @@ export class CognitoPasskeyAuth {
         })),
       },
     });
+
+    if (!assertion) {
+      throw new Error("Failed to get credential assertion");
+    }
 
     const credential = this.convertAssertionToResponseJSON(assertion as PublicKeyCredential);
 
